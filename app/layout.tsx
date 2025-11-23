@@ -118,6 +118,40 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
+        {/* Telegram Funnel Tracker Script */}
+        <Script id="telegram-funnel-tracker" strategy="afterInteractive">
+          {`
+            (function() {
+              const funnelId = 'Mxmm9dmh7j0rmcQSe5RB';
+              const baseUrl = 'https://your-region-your-project.cloudfunctions.net';
+              const currentUrl = window.location.href;
+              const allowedUrls = ["https://telegramteste.vercel.app/teste"];
+              
+              // Verificar se a URL atual está nas URLs permitidas
+              const isAllowedUrl = allowedUrls.some(url => currentUrl.includes(url));
+              if (!isAllowedUrl) return;
+              
+              // Track pageview automaticamente no load
+              fetch(baseUrl + '/trackPageview', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ funnelId, url: currentUrl })
+              }).catch(console.error);
+              
+              // Track clicks em elementos com class="telegram-button"
+              document.addEventListener('click', function(e) {
+                const target = e.target.closest('.telegram-button');
+                if (target) {
+                  fetch(baseUrl + '/trackClick', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ funnelId, url: currentUrl })
+                  }).catch(console.error);
+                }
+              });
+            })();
+          `}
+        </Script>
       </body>
     </html>
   );
