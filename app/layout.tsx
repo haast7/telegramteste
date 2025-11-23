@@ -17,7 +17,7 @@ export default function RootLayout({
       <head>
         {/* Tracktel Script */}
         <Script
-          src="https://haast.com.br/track.js?fid=Vzm0d0ZeOW6RwcjpDQ5Z"
+          src="https://telegramteste.vercel.app/track.js?fid=AsvYDFabvH5y4hIJfZYd"
           strategy="afterInteractive"
         />
         
