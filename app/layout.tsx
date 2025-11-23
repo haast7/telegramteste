@@ -122,11 +122,11 @@ export default function RootLayout({
         <Script id="telegram-funnel-tracker" strategy="afterInteractive">
           {`
             (function() {
-              const funnelId = 'IhZZkAahMixjhMIN33HD';
-              const baseUrl = 'https://us-central1-your_project_id.cloudfunctions.net';
+              const funnelId = 'Wg1cB814XUjy1ZSUcF3o';
+              const baseUrl = 'https://us-central1-telegram-tracker-28650.cloudfunctions.net';
               const metaPixelId = '847289988241178';
               const currentUrl = window.location.href;
-              const allowedUrls = ["https://telegramteste.vercel.app/teste"];
+              const allowedUrls = ["https://telegramteste.vercel.app"];
               
               // Verificar se a URL atual está nas URLs permitidas
               const isAllowedUrl = allowedUrls.some(url => currentUrl.includes(url));
