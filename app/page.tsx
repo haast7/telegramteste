@@ -36,7 +36,7 @@ export default function Home() {
           {/* CTA Button */}
           <div className="pt-4">
             <a
-              href="https://t.me/+2_BqYmotlb04N2Zh"
+              href="https://t.me/+Ekum8sUXWEYxOWNh"
               target="_blank"
               rel="noopener noreferrer"
               className="telegram-button inline-block bg-white text-purple-600 font-bold text-lg px-8 py-4 rounded-full shadow-2xl hover:scale-105 hover:shadow-3xl transition-all duration-300 transform hover:bg-yellow-50"
