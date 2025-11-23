@@ -20,7 +20,7 @@ export default function RootLayout({
           {`
             (function() {
               var apiUrl = 'https://us-central1-telegram-tracker-28650.cloudfunctions.net';
-              var funnelId = 'YTkgIRmH7OjXmL9ce7kM';
+              var funnelId = 'Q7viyHiSl6IW7nDbmpvS';
               
               // Track Pageview via Cloud Function
               function trackPageview() {
