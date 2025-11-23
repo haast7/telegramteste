@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Tracking</title>
+</head>
+<body>
+    <h1>Teste de Tracking</h1>
+    <button class="telegram-button" onclick="testClick()">Testar Clique</button>
+    
+    <div id="results"></div>
+
+    <script>
+        const funnelId = 'Wg1cB814XUjy1ZSUcF3o';
+        const baseUrl = 'https://us-central1-telegram-tracker-28650.cloudfunctions.net';
+        const currentUrl = window.location.href;
+        const allowedUrls = ["https://telegramteste.vercel.app"];
+
+        function log(message) {
+            const div = document.getElementById('results');
+            div.innerHTML += '<p>' + new Date().toLocaleTimeString() + ': ' + message + '</p>';
+            console.log(message);
+        }
+
+        // Verificar se a URL atual está nas URLs permitidas
+        const isAllowedUrl = allowedUrls.some(url => currentUrl.includes(url));
+        log('URL permitida? ' + isAllowedUrl);
+        log('URL atual: ' + currentUrl);
+
+        if (!isAllowedUrl) {
+            log('❌ Script não executará - URL não permitida');
+        } else {
+            log('✅ URL permitida - Script executará');
+        }
+
+        // Teste de trackPageview
+        function testPageview() {
+            log('Testando trackPageview...');
+            fetch(baseUrl + '/trackPageview', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ funnelId, url: currentUrl })
+            })
+            .then(response => {
+                log('✅ trackPageview: Status ' + response.status);
+                return response.json();
+            })
+            .then(data => log('Resposta: ' + JSON.stringify(data)))
+            .catch(error => log('❌ Erro trackPageview: ' + error.message));
+        }
+
+        // Teste de trackClick
+        function testClick() {
+            log('Testando trackClick...');
+            fetch(baseUrl + '/trackClick', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ funnelId, url: currentUrl })
+            })
+            .then(response => {
+                log('✅ trackClick: Status ' + response.status);
+                return response.json();
+            })
+            .then(data => log('Resposta: ' + JSON.stringify(data)))
+            .catch(error => log('❌ Erro trackClick: ' + error.message));
+        }
+
+        // Auto test pageview on load
+        if (isAllowedUrl) {
+            testPageview();
+        }
+
+        // Track clicks
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('.telegram-button');
+            if (target) {
+                log('Botão clicado!');
+                testClick();
+            }
+        });
+    </script>
+</body>
+</html>
+
