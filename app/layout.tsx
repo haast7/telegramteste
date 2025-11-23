@@ -19,14 +19,16 @@ export default function RootLayout({
         <Script id="telegram-tracker" strategy="afterInteractive">
           {`
             (function() {
-              var funnelId = 'U8uoqODMAwGJLRzqroAx';
               var apiUrl = 'https://us-central1-telegram-tracker-28650.cloudfunctions.net';
+              var funnelId = 'YTkgIRmH7OjXmL9ce7kM';
               
-              // Track Pageview
+              // Track Pageview via Cloud Function
               function trackPageview() {
                 fetch(apiUrl + '/trackPageview', {
                   method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
                   body: JSON.stringify({
                     funnelId: funnelId,
                     url: window.location.href,
@@ -37,11 +39,13 @@ export default function RootLayout({
                 });
               }
               
-              // Track Click
+              // Track Click via Cloud Function
               function trackClick(buttonId) {
                 fetch(apiUrl + '/trackClick', {
                   method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
                   body: JSON.stringify({
                     funnelId: funnelId,
                     buttonId: buttonId || 'telegram-button',
