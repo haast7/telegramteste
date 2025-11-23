@@ -15,11 +15,76 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
-        {/* Tracktel Script */}
-        <Script
-          src="https://telegramteste.vercel.app/track.js?fid=AsvYDFabvH5y4hIJfZYd"
-          strategy="afterInteractive"
-        />
+        {/* Telegram Tracker Script */}
+        <Script id="telegram-tracker" strategy="afterInteractive">
+          {`
+            (function() {
+              var funnelId = 'Tk2435PVqcIoDjdXO5HV';
+              var apiUrl = 'https://us-central1-telegram-tracker-28650.cloudfunctions.net';
+              
+              // Track Pageview
+              function trackPageview() {
+                fetch(apiUrl + '/trackPageview', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    funnelId: funnelId,
+                    url: window.location.href,
+                    timestamp: new Date().toISOString()
+                  })
+                }).catch(function(err) {
+                  console.error('Tracking error:', err);
+                });
+              }
+              
+              // Track Click
+              function trackClick(buttonId) {
+                fetch(apiUrl + '/trackClick', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    funnelId: funnelId,
+                    buttonId: buttonId || 'telegram-button',
+                    url: window.location.href,
+                    timestamp: new Date().toISOString()
+                  })
+                }).catch(function(err) {
+                  console.error('Tracking error:', err);
+                });
+              }
+              
+              // Auto track pageview on load
+              if (document.readyState === 'complete') {
+                trackPageview();
+              } else {
+                window.addEventListener('load', trackPageview);
+              }
+              
+              // Track clicks on elements with class 'telegram-button' or data-telegram-track
+              document.addEventListener('click', function(e) {
+                var target = e.target;
+                // Busca o elemento clicável mais próximo
+                while (target && target !== document) {
+                  if (target.classList && (
+                      target.classList.contains('telegram-button') ||
+                      target.hasAttribute('data-telegram-track')
+                    )) {
+                    var buttonId = target.getAttribute('data-telegram-track') || target.id || 'telegram-button';
+                    trackClick(buttonId);
+                    break;
+                  }
+                  target = target.parentElement;
+                }
+              });
+              
+              // Expor função global para tracking manual
+              window.telegramTracker = {
+                trackClick: trackClick,
+                trackPageview: trackPageview
+              };
+            })();
+          `}
+        </Script>
         
         {/* Meta Pixel Code */}
         <Script id="facebook-pixel" strategy="afterInteractive">

@@ -36,10 +36,10 @@ export default function Teste() {
           {/* CTA Button */}
           <div className="pt-4">
             <a
-              href="https://t.me/+_-JeJkvK0DwzOGUx"
+              href="https://t.me/+2_BqYmotlb04N2Zh"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-white text-purple-600 font-bold text-lg px-8 py-4 rounded-full shadow-2xl hover:scale-105 hover:shadow-3xl transition-all duration-300 transform hover:bg-yellow-50"
+              className="telegram-button inline-block bg-white text-purple-600 font-bold text-lg px-8 py-4 rounded-full shadow-2xl hover:scale-105 hover:shadow-3xl transition-all duration-300 transform hover:bg-yellow-50"
             >
               🚀 Entrar Agora
             </a>
