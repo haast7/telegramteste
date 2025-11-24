@@ -151,3 +151,4 @@ fetch('https://us-central1-telegram-tracker-28650.cloudfunctions.net/trackPagevi
 3. URL exata que você está testando
 4. Resposta do teste manual das Cloud Functions (curl acima)
 
+
