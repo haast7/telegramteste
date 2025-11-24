@@ -2,19 +2,44 @@
 
 Uma página simples e moderna para incentivar pessoas a entrarem no grupo do Telegram.
 
-## 🚀 Como usar
+## 🚀 Início Rápido
+
+### Desenvolvimento Local
 
 1. Instale as dependências:
 ```bash
 npm install
 ```
 
-2. Execute o servidor de desenvolvimento:
+2. Crie o arquivo `.env.local`:
+```env
+NEXT_PUBLIC_TRACKING_URL=http://localhost:3000/api/tracking/ad75cfdc-cba2-4d70-a5ab-c94881f76c39.js
+```
+
+3. Execute o servidor:
 ```bash
 npm run dev
 ```
 
-3. Acesse [http://localhost:3000](http://localhost:3000)
+4. Acesse [http://localhost:3000](http://localhost:3000)
+
+### Testando com Ngrok
+
+Para testar webhooks e acesso externo:
+
+1. Em outro terminal, inicie o ngrok:
+```bash
+ngrok http 3000
+```
+
+2. Atualize `.env.local` com a URL do ngrok:
+```env
+NEXT_PUBLIC_TRACKING_URL=https://abc123.ngrok.io/api/tracking/ad75cfdc-cba2-4d70-a5ab-c94881f76c39.js
+```
+
+3. Reinicie o servidor
+
+📚 **Veja `SETUP_LOCAL.md` para guia completo de desenvolvimento local**
 
 ## 📝 Personalização
 

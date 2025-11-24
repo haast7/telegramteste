@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:ngrok": "echo 'Inicie o ngrok em outro terminal: ngrok http 3000' && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
