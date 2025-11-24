@@ -44,60 +44,10 @@ export default function RootLayout({
           />
         </noscript>
         {/* Telegram Funnel Tracker Script */}
-        <Script id="telegram-funnel-tracker" strategy="afterInteractive">
-          {`
-            (function() {
-              const funnelId = 'Wg1cB814XUjy1ZSUcF3o';
-              const baseUrl = 'https://us-central1-telegram-tracker-28650.cloudfunctions.net';
-              const metaPixelId = '847289988241178';
-              const currentUrl = window.location.href;
-              const allowedUrls = ["https://telegramteste.vercel.app"];
-              
-              // Verificar se a URL atual está nas URLs permitidas
-              const isAllowedUrl = allowedUrls.some(url => currentUrl.includes(url));
-              if (!isAllowedUrl) return;
-              
-              // 🔥 INJETAR META PIXEL (client-side tracking) - Modo Híbrido
-              if (metaPixelId) {
-                !function(f,b,e,v,n,t,s)
-                {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-                n.queue=[];t=b.createElement(e);t.async=!0;
-                t.src=v;s=b.getElementsByTagName(e)[0];
-                s.parentNode.insertBefore(t,s)}(window, document,'script',
-                'https://connect.facebook.net/en_US/fbevents.js');
-                fbq('init', metaPixelId);
-                fbq('track', 'PageView');
-              }
-              
-              // Track pageview via Cloud Function (server-side)
-              fetch(baseUrl + '/trackPageview', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ funnelId, url: currentUrl })
-              }).catch(console.error);
-              
-              // Track clicks em elementos com class="telegram-button"
-              document.addEventListener('click', function(e) {
-                const target = e.target.closest('.telegram-button');
-                if (target) {
-                  // Client-side event (se Meta Pixel estiver carregado)
-                  if (typeof fbq !== 'undefined') {
-                    fbq('track', 'ClickButton');
-                  }
-                  
-                  // Server-side event
-                  fetch(baseUrl + '/trackClick', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ funnelId, url: currentUrl })
-                  }).catch(console.error);
-                }
-              });
-            })();
-          `}
-        </Script>
+        <Script
+          src="http://localhost:3000/api/tracking/ad75cfdc-cba2-4d70-a5ab-c94881f76c39.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
