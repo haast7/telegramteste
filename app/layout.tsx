@@ -71,7 +71,7 @@ export default function RootLayout({
         </noscript>
         {/* Telegram Funnel Tracker Script */}
         <Script
-          src={process.env.NEXT_PUBLIC_TRACKING_URL || "http://localhost:3000/api/tracking/ad75cfdc-cba2-4d70-a5ab-c94881f76c39.js"}
+          src={process.env.NEXT_PUBLIC_TRACKING_URL || "https://www.blogo.com.br/api/tracking/fec16e44-b903-4691-b14d-f7da9c6d686b.js"}
           strategy="afterInteractive"
         />
         {/* Facebook Conversions API - Track Button Clicks */}
